@@ -1,0 +1,54 @@
+syntax = "proto3";
+package chattyproto;
+
+//========== Add data which have to be transferred between services
+// create connection request and response
+message CreateConnectionRequest {
+    message ConnectionInfo {
+        string UID = 1;
+        string PhoneNumber = 2;
+        string Email = 3;
+    }
+
+    // create connection with one of thus connection infos
+    ConnectionInfo Connection = 1;
+}
+
+// send message request and response
+message SendMessageRequest {
+    string ChannelId = 1;
+    string CreatedAt = 2;
+    string MessageReference = 3; // refers to message item in message store
+}
+
+// report channels messages request and response
+message ReportChannelsResponse {
+    message ChannelItem {
+        string ChannelId = 1;
+        string ChannelType = 2; // which is private chat and later will support groups
+        string ChannelName = 3;
+        uint64 YourOffset = 4;
+        uint64 ChannelOffset = 5; // refers to number of new messages which is channel is forward
+    }
+
+    repeated ChannelItem Channels = 1;
+    uint64 PerPageMessage = 2; // to calculate number of pages for each channel
+}
+
+// fetch messages request and response
+message FetchMessagesRequest {
+    string ChannelId = 1;
+    uint64 Page = 2;
+}
+
+message FetchMessagesResponse {
+    message Message {
+        string ChannelId = 1;
+        string CreatedAt = 2;
+        string UpdatedAt = 3;
+        string ChannelIndex = 4; // to order messages inside an specific channel
+        string MessageReference = 5;
+    }
+
+    repeated Message Messages = 1;
+}

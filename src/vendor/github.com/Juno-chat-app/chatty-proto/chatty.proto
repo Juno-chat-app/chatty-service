@@ -1,0 +1,17 @@
+syntax = "proto3";
+package chattyproto;
+
+import "chatty_message.proto";
+
+service UserService {
+    rpc CreateConnection (RequestMessage) returns (ResponseMessage); // initial a private channel between two member, specify connection type which is pv, group, channel
+    rpc SendMessage (RequestMessage) returns (ResponseMessage); // send message into specific channel
+    rpc ReportChannelsMessages (RequestMessage) returns (ResponseMessage); // report new messages
+    rpc FetchMessages (RequestMessage) returns (ResponseMessage); // fetch list of messages per channel
+    rpc JoinConversation (RequestMessage) returns (ResponseMessage); // join into specific conversation
+    rpc AddMemberToConversation (RequestMessage) returns (ResponseMessage);
+}
+
+message empty {
+    string empty = 1;
+}
