@@ -1,5 +1,7 @@
 # github.com/Juno-chat-app/chatty-proto v0.0.0-20201231142535-745af2a0a125
 github.com/Juno-chat-app/chatty-proto
+# github.com/Juno-chat-app/user-proto v0.0.5
+github.com/Juno-chat-app/user-proto
 # github.com/golang/protobuf v1.4.2
 github.com/golang/protobuf/proto
 github.com/golang/protobuf/ptypes
